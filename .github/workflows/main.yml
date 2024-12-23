@@ -31,3 +31,4 @@ jobs:
           plugin_activity_limit: 5 # Show up to 5 recent activities
           plugin_activity_days: 14 # Include activities from the last 14 days
           plugin_activity_filter: issue, pr, release, push, star # Filter specific event types
+          repositories_exclude: vincent-4
