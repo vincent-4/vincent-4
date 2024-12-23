@@ -7,9 +7,6 @@ on:
   workflow_dispatch:
   # Trigger workflow on push to main or master branches
   push:
-    branches:
-      - "master"
-      - "main"
 
 jobs:
   github-metrics:
