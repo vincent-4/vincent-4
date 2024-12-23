@@ -2,10 +2,10 @@ name: Metrics
 on:
   # Schedule daily updates
   schedule:
-    - cron: "0 0 * * *" # Adjust this cron schedule as needed
-  # (optional) Run workflow manually
+    - cron: "0 0 * * *" # Runs daily at midnight UTC
+  # Allow manual triggering of the workflow
   workflow_dispatch:
-  # (optional) Run workflow when pushing on master/main
+  # Trigger workflow on push to main or master branches
   push:
     branches:
       - "master"
@@ -19,15 +19,18 @@ jobs:
     permissions:
       contents: write
     steps:
+      # Checkout the repository
       - name: Checkout repository
-        uses: actions/checkout@v3 # Ensures the repository is checked out
+        uses: actions/checkout@v3
+
+      # Generate Metrics
       - name: Generate Metrics
         uses: lowlighter/metrics@latest
         with:
-          token: ${{ secrets.METRICS_TOKEN }} # Your GitHub personal access token
-          filename: metrics.plugin.activity.svg # Output file for the plugin
-          base: "" # Base template (leave empty for default)
+          token: ${{ secrets.METRICS_TOKEN }} # Use the GitHub personal access token
+          filename: metrics.plugin.activity.svg # Output file for the metrics
+          base: "" # Use the default template (optional)
           plugin_activity: yes # Enable the Recent Activity plugin
           plugin_activity_limit: 5 # Show up to 5 recent activities
           plugin_activity_days: 14 # Include activities from the last 14 days
-          plugin_activity_filter: issue, pr, release, push, star # Filter for specific event types
+          plugin_activity_filter: issue, pr, release, push, star # Filter specific event types
