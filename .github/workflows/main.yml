@@ -26,6 +26,8 @@ jobs:
           plugin_activity_limit: 5
           plugin_activity_days: 0
           plugin_activity_filter: comment, ref/create, push, fork, star, public
+          plugin_activity_skipped: |
+            vincent-4
           output_action: commit
           delay: 120
           user: vincent-4
